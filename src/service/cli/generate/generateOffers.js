@@ -62,7 +62,7 @@ function generateOffers(count) {
       "title": Titles[getRandomIntInclusive(0, Titles.length - 1)],
       "description": getType(MAX_DESC_NUM, Descriptions),
       "sum": getRandomIntInclusive(Price.min, Price.max),
-      "picture": picIndex < 10 ? `item0${picIndex}.jpg` : `item${picIndex}.jpg`,
+      "picture": `item${String(0 + picIndex).slice(-2)}`,
       "category": getType(Categories.length - 1, Categories),
     });
   });

@@ -13,7 +13,7 @@ const [userCommand] = userArguments;
 
 if (userArguments.length === 0) {
   cli[DEFAULT_COMMAND].run();
-  process.exit(ExitCode.success);
+  return;
 }
 
 if (!cli[userCommand]) {

@@ -2,7 +2,7 @@
 
 const fs = require(`fs`);
 const {generateOffers} = require(`./generateOffers`);
-const FILE_NAME = __dirname + `/mock.js`;
+const FILE_NAME = __dirname + `/mock.json`;
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
 const constants = require(`../../../constants`);
@@ -10,10 +10,7 @@ const constants = require(`../../../constants`);
 module.exports = {
   name: `--generate`,
   run([arg]) {
-    let count = Number.parseInt(arg, 10);
-    if (isNaN(count)) {
-      count = DEFAULT_COUNT;
-    }
+    let count = Number.parseInt(arg, 10) || DEFAULT_COUNT;
 
     if (count > MAX_COUNT) {
       console.info(`Не больше 1000 объявлений`);
