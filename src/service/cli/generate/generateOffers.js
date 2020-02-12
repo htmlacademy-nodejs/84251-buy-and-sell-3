@@ -45,13 +45,13 @@ const Price = {min: 1000, max: 100000};
 
 function getType(maxNum, type) {
   const descNum = getRandomIntInclusive(1, maxNum);
-  const descObj = Array(descNum).fill().reduce((acc) => {
+  const descObj = new Set();
+  Array(descNum).fill().forEach(() => {
     const key = getRandomIntInclusive(0, type.length - 1);
-    acc[type[key]] = true;
-    return acc;
-  }, {});
+    descObj.add(key);
+  });
 
-  return Object.keys(descObj);
+  return Array.from(descObj);
 }
 
 function generateOffers(count) {
