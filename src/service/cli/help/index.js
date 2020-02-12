@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require(`fs`);
+const chalk = require(`chalk`);
 const FILE_NAME = __dirname + `/help.txt`;
 const constants = require(`../../../constants`);
 
@@ -13,7 +14,7 @@ module.exports = {
       }
 
       console.info(data);
-      process.exit(constants.ExitCode.success);
+      process.exit(chalk.gray(constants.ExitCode.success));
     });
   }
 };
