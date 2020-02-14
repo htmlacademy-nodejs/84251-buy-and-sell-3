@@ -22,7 +22,8 @@ module.exports = {
 
     async function writeMock() {
       try {
-        await writeFile(FILE_NAME, JSON.stringify(generateOffers(count)));
+        const offers = await generateOffers(count);
+        await writeFile(FILE_NAME, JSON.stringify(offers));
         process.exit(constants.ExitCode.success);
       } catch (err) {
         process.exit(constants.ExitCode.failure);
