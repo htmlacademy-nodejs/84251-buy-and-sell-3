@@ -1,0 +1,70 @@
+extends ../layout/main.pug
+block content
+
+  - var categories = []
+  - categories.push(['cat', 'Дом', '81'])
+  - categories.push(['cat02','Электроника','62'])
+  - categories.push(['cat03','Одежда','106'])
+  - categories.push(['cat04','Спорт/отдых','86'])
+  - categories.push(['cat05','Авто',34])
+  - categories.push(['cat06','Книги',92])
+  section.categories-list
+    h1.visually-hidden Сервис объявлений "Куплю - продам"
+    ul.categories-list__wrapper
+      each val in categories
+        li.categories-list__item
+          a.category-tile.category-tile--default(href="#")
+            span.category-tile__image
+              img(src=`img/${val[0]}.jpg`, srcset=`img/${val[0]}@2x.jpg 2x`, alt='Иконка категории')
+            span.category-tile__label #{val[1]}
+              span.category-tile__qty.js-qty #{val[2]}
+
+
+  - var tickets = []
+  - tickets.push(['06','ПРОДАМ',['ЭЛЕКТРОНИКА'],'Фотик Canon','32 000','Продам свое старое кресло, чтобы сидеть и читать книги зимними..'])
+  - tickets.push(['08','Куплю',['ЭЛЕКТРОНИКА'],'Ableton','88 000','Куплю вот такую итальянскую кофеварку, можно любой фирмы...'])
+  - tickets.push(['15','ПРОДАМ',['Электроника'],'Кофемашина','26 000','Продам свое старое кресло, чтобы сидеть и читать книги зимними...'])
+  - tickets.push(['12','Куплю',['ЭЛЕКТРОНИКА'],'Радио Панасоник','32 000','Куплю вот такую итальянскую кофеварку, можно любой фирмы...'])
+  - tickets.push(['13','ПРОДАМ',['ЭЛЕКТРОНИКА'],'Штатив Sony','8 000','Продам свое старое кресло, чтобы сидеть и читать книги зимними...'])
+  - tickets.push(['14','Куплю',['ЭЛЕКТРОНИКА'],'Дрон с камерой','32 000','Куплю вот такую итальянскую кофеварку, можно любой фирмы...'])
+  - tickets.push(['10','ПРОДАМ',['ЭЛЕКТРОНИКА'],'Мое старое кресло','4 000','Продам свое старое кресло, чтобы сидеть и читать книги зимними...'])
+  - tickets.push(['06','ПРОДАМ',['ЭЛЕКТРОНИКА'],'Ableton','88 000','Продам свое старое кресло, чтобы сидеть и читать книги зимними...'])
+  section.tickets-list
+    h2.visually-hidden Предложения из категории электроника
+    div.tickets-list__wrapper
+    div.tickets-list__header
+      p.tickets-list__title Электроника
+        b.js-qty 62
+    ul
+      each val in tickets
+        li.tickets-list__item
+          div(class=`ticket-card.ticket-card--color01${val[0]}`)
+            div.ticket-card__img
+              img(src=`img/item${val[0]}.jpg`,srcset=`img/${val[0]}@2x.jpg 2x`, alt="Изображение товара")
+            div.ticket-card__info
+              span.ticket-card__label #{val[1]}
+              div.ticket-card__categories
+                each cat in val[2]
+                  a(href="#") #{cat}
+              div.ticket-card__header
+                h3.ticket-card__title
+                  a(href="#") #{val[3]}
+                p.ticket-card__price
+                  span.js-sum #{val[4]}
+                  | ₽
+              div.ticket-card__desc
+                p !{val[5]}
+    div.tickets-list__pagination
+      ul.pagination
+        li
+          a.active(href='#') 1
+        li
+          a(href='#') 2
+        li
+          a(href='#') 3
+        li
+          a(href='#') 4
+        li
+          a(href='#') 5
+        li
+          a(href='#') дальше
