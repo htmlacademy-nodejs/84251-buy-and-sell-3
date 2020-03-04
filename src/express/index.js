@@ -7,7 +7,7 @@ const path = require(`path`);
 const DEFAULT_PORT = 8080;
 
 const app = express();
-console.log(__dirname);
+app.use(express.static(`markup`));
 app.set(`views`, path.join(__dirname, `templates`));
 app.set(`view engine`, `pug`);
 app.use(routes);
