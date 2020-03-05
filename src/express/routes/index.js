@@ -10,8 +10,8 @@ router.use(`/my`, myRoutes);
 router.use(`/offers`, offerRoutes);
 
 router.get(`/register`, (req, res) => res.send(`/register`));
-router.get(`/login`, (req, res) => res.send(`/login`));
-router.get(`/search`, (req, res) => res.send(`/search`));
-router.get(`/`, (req, res) => res.send(`/`));
+router.get(`/login`, (req, res) => res.render(`pages/login`));
+router.get(`/search`, (req, res) => res.render(`pages/search-result`));
+router.get(`/`, (req, res) => res.render(`pages/main`));
 
 module.exports = router;
