@@ -1,45 +1,17 @@
 'use strict';
 
-const http = require(`http`);
+const express = require(`express`);
+const routes = require(`./routes`);
+
+const app = express();
+app.use(express.json());
+app.use(routes);
 
 const constants = require(`../../../constants`);
-const {readMockFile, buildHTMLFromTitles} = require(`../../../utils`);
-const HTTP_SUCCESS_CODE = 200;
-const HTTP_NOT_FOUND_CODE = 404;
 
-
-const onClientConnect = async (req, res) => {
-  let content = ``;
-  switch (req.url) {
-    case `/`:
-
-      try {
-        const data = JSON.parse(await readMockFile());
-        content = buildHTMLFromTitles(data);
-
-        res.writeHead(HTTP_SUCCESS_CODE, {
-          'Content-Type': `text/html; charset=UTF-8`,
-        });
-      } catch (err) {
-        res.writeHead(HTTP_NOT_FOUND_CODE, {
-          'Content-Type': `text/html; charset=UTF-8`,
-        });
-      }
-
-      break;
-    default:
-      res.writeHead(HTTP_NOT_FOUND_CODE, {
-        'Content-Type': `text/plain; charset=UTF-8`,
-      });
-  }
-
-  res.end(content);
-};
-
-async function startServer(port) {
+function startServer(port) {
   try {
-    const httpServer = http.createServer(onClientConnect);
-    await httpServer.listen(port);
+    app.listen(port, () => console.log(`Сервер запущен на порту: ${port}`));
   } catch (err) {
     process.exit(constants.ExitCode.failure);
   }
