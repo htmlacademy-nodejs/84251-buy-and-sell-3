@@ -11,6 +11,16 @@ function getRandomIntInclusive(min, max) {
   return Math.ceil(Math.random() * (max - min)) + min;
 }
 
+function readMockFileSync() {
+  let data = [];
+  try {
+    data = JSON.parse(fs.readFileSync(PATH_TO_MOCK_FILE, `utf8`));
+  } catch (err) {
+    process.exit(constants.ExitCode.failure);
+  }
+  return data;
+}
+
 async function readFileByName(fileName) {
   let data;
   try {
@@ -35,5 +45,6 @@ module.exports = {
   getRandomIntInclusive,
   readFileByName,
   readMockFile,
+  readMockFileSync,
   buildHTMLFromTitles,
 };

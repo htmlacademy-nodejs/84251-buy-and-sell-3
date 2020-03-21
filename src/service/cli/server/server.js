@@ -2,12 +2,11 @@
 
 const express = require(`express`);
 const routes = require(`./routes`);
+const constants = require(`../../../constants`);
 
 const app = express();
 app.use(express.json());
 app.use(routes);
-
-const constants = require(`../../../constants`);
 
 function startServer(port) {
   try {
