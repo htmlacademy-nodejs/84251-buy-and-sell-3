@@ -1,5 +1,6 @@
 'use strict';
 
+const chalk = require(`chalk`);
 const fs = require(`fs`);
 const util = require(`util`);
 const readFile = util.promisify(fs.readFile);
@@ -16,7 +17,7 @@ function readMockFileSync() {
   try {
     data = JSON.parse(fs.readFileSync(PATH_TO_MOCK_FILE, `utf8`));
   } catch (err) {
-    process.exit(constants.ExitCode.failure);
+    console.info(chalk.blue(`Mock file is not found`));
   }
   return data;
 }
