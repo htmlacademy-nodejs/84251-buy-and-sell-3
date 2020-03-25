@@ -6,10 +6,14 @@ const {Router} = require(`express`);
 const {readMockFileSync} = require(`../../../utils`);
 const routes = new Router();
 
-let data = readMockFileSync().reduce((acc, cur) => {
-  acc[cur.id] = cur;
-  return acc;
-}, {});
+let data;
+
+function preloadMockData() {
+  data = readMockFileSync().reduce((acc, cur) => {
+    acc[cur.id] = cur;
+    return acc;
+  }, {});
+}
 
 function prepareData(result) {
   return Object.keys(result).length ? result : [];
@@ -151,4 +155,7 @@ routes.get(`/offers`, async (req, res) => {
   res.json(data);
 });
 
-module.exports = routes;
+module.exports = {
+  routes,
+  preloadMockData,
+};

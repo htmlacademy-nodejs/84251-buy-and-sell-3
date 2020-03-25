@@ -17,7 +17,7 @@ function readMockFileSync() {
   try {
     data = JSON.parse(fs.readFileSync(PATH_TO_MOCK_FILE, `utf8`));
   } catch (err) {
-    console.info(chalk.blue(`Mock file is not found`));
+    process.exit(constants.ExitCode.failure);
   }
   return data;
 }
