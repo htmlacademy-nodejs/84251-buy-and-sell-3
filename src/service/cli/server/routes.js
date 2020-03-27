@@ -114,7 +114,6 @@ routes.delete(`/api/offers/:offerId/comments/:commentId`, ({params}, res) => {
   }
 
   offer.comments = comments.filter((com) => com.id !== commentId);
-  console.log(offer);
   return res.sendStatus(204);
 });
 
