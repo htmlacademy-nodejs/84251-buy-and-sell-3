@@ -83,7 +83,7 @@ routes.delete(`/api/offers/:offerId`, ({params}, res) => {
   if (!data[offerId]) {
     return res.status(404).send(`Offer not found`);
   }
-  data[offerId] = undefined;
+  delete data[offerId];
   return res.sendStatus(204);
 });
 
