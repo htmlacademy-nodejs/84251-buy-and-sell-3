@@ -33,7 +33,7 @@ routes.get(`/api/offers`, async (req, res) => {
   res.json(Object.values(data));
 });
 
-routes.get(`/api/offers/categories`, (req, res) => {
+routes.get(`/api/categories`, (req, res) => {
   let result = Object.values(data).map((offer) => offer.category).flat();
   result = Array.from(new Set(result));
   res.json(result);
